@@ -3,7 +3,7 @@ export default class Data {
 
     constructor() {
         if (this.constructor == Data) {
-          // throw new Error(Error_Msg.INSTANTIATION_ERROR);
+          throw new Error(Error_Msg.INSTANTIATION_ERROR);
         }
       }
 

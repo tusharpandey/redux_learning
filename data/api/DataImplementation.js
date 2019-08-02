@@ -5,8 +5,9 @@ import DBRepositoryImplementation from './DBRepositoryImplementation'
 export default class DataImplementation extends Data{
 
     constructor(){
-        this.cloudImpl = new CloudRepositoryImplementation()
-        this.dbImpl = new DBRepositoryImplementation()
+        super()
+        cloudImpl = new CloudRepositoryImplementation()
+        dbImpl = new DBRepositoryImplementation()
     }
 
     getUserDetail(){

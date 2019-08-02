@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, View, ToolbarAndroid, FlatList, Platform, StatusBar } from 'react-native';
 import FriendItem from './FriendItem.js'
-import DBRepositoryImplementation from '../data/api/DBRepositoryImplementation'
+import GetUserDetailUseCase from '../domain/GetUserDetailUseCase.js';
 
 export default class FriendList extends React.Component {
 
@@ -9,7 +9,7 @@ export default class FriendList extends React.Component {
         super()
         this.onActionSelected = this.onActionSelected.bind(this);
 
-        new DBRepositoryImplementation().getUserDetail()
+        new GetUserDetailUseCase().executeGetUserDetailUseCase()
     }
 
     static navigationOptions = {
