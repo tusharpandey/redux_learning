@@ -26,10 +26,10 @@ export default class App extends React.Component {
         return (
             <Provider store={store}>
                 <AppNavigator
-                    screenProps={{
-                        friendList: this.state.friendList,
-                        addFriend: this.addFriend,
-                    }}
+                    // screenProps={{
+                    //     friendList: this.state.friendList,
+                    //     addFriend: this.addFriend,
+                    // }}
                 />
             </Provider>);
     }

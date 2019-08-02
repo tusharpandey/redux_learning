@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, ToolbarAndroid, FlatList, Platform, StatusBar } from 'react-native';
+import { StyleSheet, Text,View, ToolbarAndroid, FlatList, Platform, StatusBar } from 'react-native';
 import FriendItem from './FriendItem.js'
 import GetUserDetailUseCase from '../domain/GetUserDetailUseCase.js';
 import { connect } from 'react-redux';
@@ -27,7 +27,7 @@ class FriendList extends React.Component {
 
         return (
             <View style={styles.containerToolbar}>
-
+                <Text>We have {this.props.friends.current.length} friends!</Text>
                 <ToolbarAndroid style={styles.toolbar}
                     title="Friends"
                     actions={[{
@@ -39,7 +39,7 @@ class FriendList extends React.Component {
                 />
 
                 <FlatList
-                    data={this.props.screenProps.friendList}
+                    // data={this.props.screenProps.friendList}
                     renderItem={({ item }) => <FriendItem name={item.key} />}
                 />
             </View>

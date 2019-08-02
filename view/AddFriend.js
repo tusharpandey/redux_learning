@@ -1,6 +1,8 @@
 import React from 'react';
 import { Alert, StyleSheet, Text, View, Button, TextInput } from 'react-native';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { addFriend } from '../redux/AddFriendAction';
 
 var friendList = []
 
@@ -23,7 +25,11 @@ class AddFriend extends React.Component {
     friendList.push(newFriend);
     this.setState({ friendList2: friendList })
 
-    this.props.screenProps.addFriend(newFriend)
+    // this.props.screenProps.addFriend(newFriend)
+
+    this.props.friends.possible.map((friend, index) => (
+          this.props.addFriend(index)
+    ))
   }
 
   render() {
@@ -63,4 +69,10 @@ const mapStateToProps = (state) => {
   return { friends }
 };
 
-export default connect(mapStateToProps)(AddFriend);
+const mapDispatchToProps = dispatch => (
+  bindActionCreators({
+    addFriend,
+  }, dispatch)
+);
+
+export default connect(mapStateToProps,mapDispatchToProps )(AddFriend);
