@@ -2,10 +2,11 @@ import React from 'react'
 import { StyleSheet, View, ToolbarAndroid, FlatList, Platform, StatusBar } from 'react-native';
 import FriendItem from './FriendItem.js'
 import GetUserDetailUseCase from '../domain/GetUserDetailUseCase.js';
+import { connect } from 'react-redux';
 
-export default class FriendList extends React.Component {
+class FriendList extends React.Component {
 
-    constructor(){
+    constructor() {
         super()
         this.onActionSelected = this.onActionSelected.bind(this);
 
@@ -29,15 +30,17 @@ export default class FriendList extends React.Component {
 
                 <ToolbarAndroid style={styles.toolbar}
                     title="Friends"
-                    actions={[{ title: 'Add friends',
-                    //  icon: AppImage.appLogo,
-                      show: 'always' }]}
+                    actions={[{
+                        title: 'Add friends',
+                        //  icon: AppImage.appLogo,
+                        show: 'always'
+                    }]}
                     onActionSelected={this.onActionSelected}
                 />
 
                 <FlatList
                     data={this.props.screenProps.friendList}
-                    renderItem={({ item }) => <FriendItem name={item.key}/>}
+                    renderItem={({ item }) => <FriendItem name={item.key} />}
                 />
             </View>
         );
@@ -59,3 +62,10 @@ const styles = StyleSheet.create({
     },
 
 });
+
+const mapStateToProps = (state) => {
+    const { friends } = state
+    return { friends }
+};
+
+export default connect(mapStateToProps)(FriendList);

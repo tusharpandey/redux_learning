@@ -1,7 +1,10 @@
 import React from 'react';
 import { Alert, StyleSheet, Text, View, Button, TextInput } from 'react-native';
+import { connect } from 'react-redux';
+
 var friendList = []
-export default class AddFriend extends React.Component {
+
+class AddFriend extends React.Component {
 
   constructor(props) {
     super(props)
@@ -54,3 +57,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
 });
+
+const mapStateToProps = (state) => {
+  const { friends } = state
+  return { friends }
+};
+
+export default connect(mapStateToProps)(AddFriend);
