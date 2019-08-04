@@ -19,7 +19,7 @@ class FriendList extends React.Component {
 
     onActionSelected(position) {
         if (position === 0) {
-            this.props.navigation.navigate('addFriend');
+            this.props.navigation.navigate('addFriend',{title: 'Add Friends'});
         }
     }
 
@@ -27,7 +27,7 @@ class FriendList extends React.Component {
 
         return (
             <View style={styles.containerToolbar}>
-                <Text>We have {this.props.friends.current.length} friends!</Text>
+                
                 <ToolbarAndroid style={styles.toolbar}
                     title="Friends"
                     actions={[{
@@ -39,7 +39,7 @@ class FriendList extends React.Component {
                 />
 
                 <FlatList
-                    // data={this.props.screenProps.friendList}
+                    data={this.props.friends.friendList}
                     renderItem={({ item }) => <FriendItem name={item.key} />}
                 />
             </View>

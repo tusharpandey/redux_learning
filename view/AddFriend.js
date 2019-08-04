@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, StyleSheet, Text, View, Button, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { addFriend } from '../redux/AddFriendAction';
@@ -13,23 +13,25 @@ class AddFriend extends React.Component {
     this.state = {
       friend: '',
       enteredName: '',
-      friendList2: []
     };
     this.friendDetail = this.friendDetail.bind(this);
   }
+
+  static navigationOptions = ({ navigation }) => ({
+    title: `${navigation.state.params.title}`,
+    headerTitleStyle: { textAlign: 'center', alignSelf: 'center' },
+    headerStyle: {
+      backgroundColor: 'white',
+    },
+  });
 
   friendDetail() {
     newFriend = this.state.enteredName
     this.setState({ friend: newFriend })
 
-    friendList.push(newFriend);
-    this.setState({ friendList2: friendList })
+    console.log("clicked")
 
-    // this.props.screenProps.addFriend(newFriend)
-
-    this.props.friends.possible.map((friend, index) => (
-          this.props.addFriend(index)
-    ))
+    this.props.addFriend(newFriend)
   }
 
   render() {
@@ -64,15 +66,15 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = (state) => {
+const mapStateToProps = function(state)  {
   const { friends } = state
   return { friends }
 };
 
-const mapDispatchToProps = dispatch => (
-  bindActionCreators({
+const mapDispatchToProps = function(dispatch) {
+  return bindActionCreators({
     addFriend,
   }, dispatch)
-);
+};
 
-export default connect(mapStateToProps,mapDispatchToProps )(AddFriend);
+export default connect(mapStateToProps, mapDispatchToProps)(AddFriend);
