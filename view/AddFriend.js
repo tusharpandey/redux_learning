@@ -2,9 +2,9 @@ import React from 'react';
 import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { addFriend } from '../redux/AddFriendAction';
-
-var friendList = []
+import { addAction } from '../redux/AddFriendAction';
+import { remAction } from '../redux/RemoveFriendAction';
+import User from '../data/pojo/User';
 
 class AddFriend extends React.Component {
 
@@ -13,8 +13,10 @@ class AddFriend extends React.Component {
     this.state = {
       friend: '',
       enteredName: '',
+      index: -1,
     };
-    this.friendDetail = this.friendDetail.bind(this);
+    this.addFriend = this.friendDetail.bind(this);
+    this.remFriend = this.removeFriend123.bind(this);
   }
 
   static navigationOptions = ({ navigation }) => ({
@@ -26,12 +28,24 @@ class AddFriend extends React.Component {
   });
 
   friendDetail() {
+    
+    console.log("add friend")
+
     newFriend = this.state.enteredName
-    this.setState({ friend: newFriend })
+    newIndex = this.props.friends.friendList.length
+    this.setState({ friend: newFriend, index: newIndex })
 
-    console.log("clicked")
+    user = new User()
+    user.name = newFriend
+    user.id = newIndex
 
-    this.props.addFriend(newFriend)
+    this.props.addAction(user)
+  }
+
+  removeFriend123() {
+    console.log("remove friend")
+    newIndex = this.state.enteredName
+    this.props.remAction(0)
   }
 
   render() {
@@ -48,8 +62,14 @@ class AddFriend extends React.Component {
         />
 
         <Button
-          onPress={this.friendDetail}
+          onPress={this.addFriend}
           title="Add Friend"
+          color="#841584"
+        />
+
+        <Button
+          onPress={this.remFriend}
+          title="Remove Friend"
           color="#841584"
         />
 
@@ -66,14 +86,14 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = function(state)  {
+const mapStateToProps = function (state) {
   const { friends } = state
   return { friends }
 };
 
-const mapDispatchToProps = function(dispatch) {
+const mapDispatchToProps = function (dispatch) {
   return bindActionCreators({
-    addFriend,
+    addAction, remAction
   }, dispatch)
 };
 

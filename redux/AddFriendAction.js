@@ -1,6 +1,6 @@
-export const addFriend = friendIndex => (
+export const addAction = user => (
   {
     type: 'ADD_FRIEND',
-    payload: friendIndex,
+    payload: user,
   }
 );

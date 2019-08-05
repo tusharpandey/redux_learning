@@ -4,10 +4,14 @@ import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native'
 export default class FriendItem extends React.Component {
     render() {
 
+        // console.log(`Info : ${this.props.name}`)
+        // console.log(`Info value: ${this.props.name.key.name}`)
+        // console.log(`Info key: ${this.props.name.key.id}`)
+
         return (
-            <TouchableWithoutFeedback onPress={() => this.props.navigation.navigate('operation', { operation: this.props.name, })}>
+            <TouchableWithoutFeedback>
                 <View>
-                    <Text style={styles.actionbar}>{this.props.name}</Text>
+                    <Text style={styles.actionbar}>{this.props.name.key.name}</Text>
                 </View>
             </TouchableWithoutFeedback>
         );

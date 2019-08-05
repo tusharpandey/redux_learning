@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text,View, ToolbarAndroid, FlatList, Platform, StatusBar } from 'react-native';
+import { StyleSheet, Text, View, ToolbarAndroid, FlatList, Platform, StatusBar } from 'react-native';
 import FriendItem from './FriendItem.js'
 import GetUserDetailUseCase from '../domain/GetUserDetailUseCase.js';
 import { connect } from 'react-redux';
@@ -19,20 +19,19 @@ class FriendList extends React.Component {
 
     onActionSelected(position) {
         if (position === 0) {
-            this.props.navigation.navigate('addFriend',{title: 'Add Friends'});
+            this.props.navigation.navigate('addFriend', { title: 'Add Friends' });
         }
     }
 
     render() {
-
         return (
+
             <View style={styles.containerToolbar}>
-                
+
                 <ToolbarAndroid style={styles.toolbar}
                     title="Friends"
                     actions={[{
                         title: 'Add friends',
-                        //  icon: AppImage.appLogo,
                         show: 'always'
                     }]}
                     onActionSelected={this.onActionSelected}
@@ -40,7 +39,8 @@ class FriendList extends React.Component {
 
                 <FlatList
                     data={this.props.friends.friendList}
-                    renderItem={({ item }) => <FriendItem name={item.key} />}
+                    keyExtractor={(item, index) => String(index)}
+                    renderItem={({ item }) => <FriendItem name={item} />}
                 />
             </View>
         );
