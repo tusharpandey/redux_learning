@@ -27,9 +27,14 @@ const friendReducer = function (state = INITIAL_STATE, action) {
       var array = [...state.friendList];
       var index = action.payload
       console.log(`Index is ${index}`)
-      filteredData = array.filter(item => item.id !== index);
-      console.log(array)
-      const newRemState = { friendList: Array.from(filteredData) }
+      temparray = []
+      for(var i = 0 ; i < array.length ; i++){
+        if(i!=index){
+          temparray.push({ key : array[i].key })
+        }
+      }
+      console.log(temparray)
+      const newRemState = { friendList: Array.from(temparray) }
       return newRemState;
 
 
